@@ -38,12 +38,12 @@ namespace MMM.App.Pages
 
         private void FinancialEntity_Edit(int id)
         {
-
+            _uriHelper.NavigateTo($"financialentity_edit/{id}");
         }
 
         private void FinancialEntity_Transaction(int id)
         {
-
+            _uriHelper.NavigateTo($"financialentity_transaction/{id}");
         }
     }
 }
