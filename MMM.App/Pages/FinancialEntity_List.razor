@@ -1,0 +1,50 @@
+﻿@page "/financialentity_list"
+
+@attribute [Authorize]
+
+<h3>Financial Entities</h3>
+
+
+
+@if (financialEntities_list != null)
+{
+    <div id="entityList" class="row">
+        <div class="card col-md-3" @onclick="@Navigate_CreateFinancialEntity">
+            @*<img src="img_avatar.png" alt="Avatar" style="width:100%">*@
+            <div class="container">
+            <h4><b>Add New Entity</b></h4>
+            <span class="fa fa-plus" aria-hidden="true"></span>
+            </div>
+        </div>
+
+        @foreach (var financialEntity in financialEntities_list)
+        {
+            <div class="card col-md-4">
+              <div class="card-body container">
+                  <h4 class="card-title"><b>@financialEntity.EntityName</b></h4>
+                  <p class="card-text">@financialEntity.EntityType</p>
+                  <div class="row justify-content-center">
+                      <div class="col-3">
+                          <button class="btn btn-info" @onclick="() => FinancialEntity_View(financialEntity.Id)">View</button>
+                      </div>
+                      <div class="col-3">
+                          <button class="btn btn-secondary" @onclick="() => FinancialEntity_Edit(financialEntity.Id)">Edit</button>
+                      </div>                 
+                  </div>
+                  <div class="row pt-1">
+                      <div class="col">
+                          <button class="btn btn-success" @onclick="() => FinancialEntity_Transaction(financialEntity.Id)">Transaction</button>
+                      </div>                  
+                  </div>
+              </div>
+            </div>
+
+
+        }
+    </div>
+}
+else
+{
+   <p>Loading...</p>
+}
+

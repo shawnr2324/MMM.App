@@ -1,0 +1,74 @@
+﻿@page "/"
+@using MMM.Models
+@using Microsoft.AspNetCore.Identity
+@using DataAccessLibrary
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject UserManager<IdentityUser> UserManager;
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+@if (!@debug)
+{
+    
+
+
+    <br />
+    <br />
+
+    <button @onclick="@LogUsername">Write user info to console</button>
+    <br />
+    <br />
+    @Message
+    <br />
+    <br />
+
+    @if (authStateTest != null)
+    {
+        <p>
+            Name : @authStateTest.User.Identity.Name
+        </p>
+
+        @foreach (var claim in authStateTest.User.Claims)
+        {
+            <p>
+                ClaimType : @claim.Type <br/>
+
+                ClaimValue : @claim.ValueType
+            </p>
+        }
+    }
+}
+
+@code{
+    [CascadingParameter]
+    private Task<AuthenticationState> _authStateTest { get; set; }
+    private AuthenticationState authStateTest;
+    public bool debug { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        authStateTest = await _authStateTest;
+        debug = true;
+    }
+
+    string Message = "";
+
+    private async Task LogUsername()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            var currentUser = await UserManager.GetUserAsync(user);
+            Message = ($"{user.Identity.Name} is authenticated. Email is { currentUser.Email }. ID is { currentUser.Id }");
+        }
+        else
+        {
+            Message = ("The user is NOT authenticated.");
+        }
+    }
+}
