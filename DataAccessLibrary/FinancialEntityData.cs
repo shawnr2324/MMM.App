@@ -19,6 +19,7 @@ namespace DataAccessLibrary
         public Task<List<FinancialEntity_Model>> GetAllUserFinancialEntities(string userID)
         {
             string sql = @"select   fe.Id, 
+                                    fe.UserID,
                                     fe.EntityTypeID, 
                                     fe.Balance, 
                                     fe.InterestRate, 
@@ -38,6 +39,7 @@ namespace DataAccessLibrary
         public Task<FinancialEntity_Model> GetFinancialEntity(int id)
         {
             string sql = @"select   fe.Id, 
+                                    fe.UserID,
                                     fe.EntityTypeID, 
                                     fe.Balance, 
                                     fe.InterestRate, 
@@ -54,7 +56,22 @@ namespace DataAccessLibrary
             return _db.LoadDataObject<FinancialEntity_Model, dynamic>(sql, new { Id = id });
         }
 
+        public Task UpdateFinancialEntity(FinancialEntity_Form_Model financialEntity)
+        {
+            string sql = @"UPDATE dbo.Financial_Entity 
+                            SET EntityTypeID = @EntityTypeID,
+                                UserID = @UserID,
+                                Balance = @Balance,
+                                InterestRate = @InterestRate,
+                                OpenDate = @OpenDate,
+                                MinimumPayment = @MinimumPayment,
+                                APY = @APY,
+                                EntityName = @EntityName,
+                                InitialAmount = @InitialAmount
+                            WHERE Id = @Id";
 
+            return _db.SaveData(sql, financialEntity);
+        }
 
         public Task InsertFinancialEntity(FinancialEntity_Form_Model financialEntity)
         {

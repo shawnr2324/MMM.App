@@ -1,4 +1,114 @@
 ﻿@page "/financialentity_edit/{Id}"
 
+@attribute [Authorize]
+
 <h3>Financial Entity Edit</h3>
 
+<div class="container">
+    @if (entityTypes is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    { 
+        <div class="row">
+            <div class="col-sm-12">
+                <EditForm Model="@financialEntity_Form" OnValidSubmit="@UpdateFinancialEntity" OnInvalidSubmit="@HandleInvalidSubmit">
+                    <DataAnnotationsValidator />
+
+                    <div class="row content">
+                        <div class="col-sm-8">
+                            <label for="entityType">Entity Type</label>
+                            <InputSelect id="entityType" @bind-Value="financialEntity_Form.EntityTypeID" class="form-control">
+                                <option value="0">Please Select</option>
+                                @foreach (var entityType in entityTypes)
+                                {
+                                    <option value="@entityType.Id">@entityType.EntityType</option>
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="@(() => financialEntity_Form.EntityTypeID)" />
+                        </div>
+                    </div>
+
+                    <div class="row content">
+                        <div class="col-sm-8">
+                            <label for="name">Name</label>
+                            <InputText id="name" @bind-Value="financialEntity_Form.EntityName" class="form-control"/>
+                            <ValidationMessage For="@(() => financialEntity_Form.EntityName)" />
+                        </div>
+                    </div>
+
+                    <div class="row content">
+                        <div class="col-sm-8">
+                            <label for="balance">Balance Amount</label>
+                            <InputNumber id="balance" @bind-Value="financialEntity_Form.Balance" class="form-control"/>
+                            <ValidationMessage For="@(() => financialEntity_Form.Balance)" />
+                        </div>
+                    </div>
+
+                    @if (financialEntity_Form.EntityTypeID == 3)
+                    {
+                        <div class="row content">
+                            <div class="col-sm-8">
+                                <label for="interestRate">Interest Rate</label>
+                                <InputNumber id="interestRate" @bind-Value="financialEntity_Form.InterestRate" class="form-control" placeholder="0.0%"/>
+                                <ValidationMessage For="@(() => financialEntity_Form.InterestRate)" />
+                            </div>
+                        </div>
+                    }
+
+                    @if (financialEntity_Form.EntityTypeID == 3 || financialEntity_Form.EntityTypeID == 2)
+                    {
+                        <div class="row content">
+                            <div class="col-sm-8">
+                                <label for="openDate">Date Opened</label>
+                                <InputDate id="openDate" @bind-Value="financialEntity_Form.OpenDate" class="form-control"/>
+                                <ValidationMessage For="@(() => financialEntity_Form.OpenDate)" />
+                            </div>
+                        </div>
+                    }
+
+                    @if (financialEntity_Form.EntityTypeID == 3)
+                    {
+                        <div class="row content">
+                            <div class="col-sm-8">
+                                <label for="minPayment">Minimum Payment</label>
+                                <InputNumber id="minPayment" @bind-Value="financialEntity_Form.MinimumPayment" class="form-control"/>
+                                <ValidationMessage For="@(() => financialEntity_Form.MinimumPayment)" />
+                            </div>
+                        </div>
+                    }
+                
+                    @if (financialEntity_Form.EntityTypeID == 2)
+                    {
+                        <div class="row content">
+                            <div class="col-sm-8">
+                                <label for="apy">APY</label>
+                                <InputNumber id="apy" @bind-Value="financialEntity_Form.APY" class="form-control"/>
+                                <ValidationMessage For="@(() => financialEntity_Form.APY)" />
+                            </div>
+                        </div>
+                    }
+
+                    @if (financialEntity_Form.EntityTypeID == 3 || financialEntity_Form.EntityTypeID == 2)
+                    {
+                        <div class="row content">
+                            <div class="col-sm-8">
+                                <label for="initialAmount">Initial Amount</label>
+                                <InputNumber id="initialAmount" @bind-Value="financialEntity_Form.InitialAmount" class="form-control"/>
+                                <ValidationMessage For="@(() => financialEntity_Form.InitialAmount)" />
+                            </div>
+                        </div>
+                    }
+
+                    <div class="row content">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+            
+                </EditForm>
+            </div>
+        </div>
+    }
+</div>

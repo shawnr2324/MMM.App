@@ -33,7 +33,7 @@ namespace MMM.Models
             get { return this.EntityTypeID == 2 || this.EntityTypeID == 3;}
         }
 
-        [RequiredIf("SavingsAndDebt", true)]
+        [RequiredIf("SavingsAndDebt", true), DataType(DataType.Date)]
         public DateTime? OpenDate { get; set; }
 
         [RequiredIf("EntityTypeID", 3), DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]

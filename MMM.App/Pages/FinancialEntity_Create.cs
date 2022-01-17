@@ -19,11 +19,6 @@ namespace MMM.App.Pages
         private List<EntityType_Model> entityTypes;
         private AuthUser_Model authUser;
 
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-        }
-
         protected override async Task OnInitializedAsync()
         {
             authUser = await _authUserData.GetAuthUserData();
@@ -54,7 +49,7 @@ namespace MMM.App.Pages
         {
             
             JsRuntime.InvokeAsync<string>("console.log", "Valid Submit Handled");
-            //JsRuntime.InvokeAsync<string>("console.log", financialEntity.UserID);
+            JsRuntime.InvokeAsync<string>("console.log", financialEntity.SavingsAndDebt);
         }
 
         private void HandleInvalidSubmit()

@@ -1,91 +1,99 @@
 ﻿@page "/financialentity_detail/{Id}"
 
+@attribute [Authorize]
 
-
-@if(financialEntity != null){
-    <div class="p-2">
-        <h2>@financialEntity.EntityName</h2>
-        <div class="row border-bottom p-2">
-            <div class="col-lg-2">
-                <h5>Type:</h5>
-            </div>
-            <div class="col-lg-2">
-                <p>@financialEntity.EntityType</p>
-            </div>
-        </div>
-
-        <div class="row border-bottom p-2">
-            <div class="col-lg-2">
-                <h5>Balance:</h5>
-            </div>
-            <div class="col-lg-2">
-                <p>@financialEntity.FormattedBalance</p>
-            </div>
-        </div>
-
-        @if (financialEntity.FormattedAPY != null)
-        {
-            <div class="row border-bottom p-2">
-                <div class="col-lg-2">
-                    <h5>APY:</h5>
-                </div>
-                <div class="col-lg-2">
-                    <p>@financialEntity.FormattedAPY</p>
-                </div>
-            </div>
-        }
-
-       @if (financialEntity.FormattedInterestRate != null)
-        {
-            <div class="row border-bottom p-2">
-                <div class="col-lg-2">
-                    <h5>Interest Rate</h5>
-                </div>
-                <div class="col-lg-2">
-                    <p>@financialEntity.FormattedInterestRate</p>
-                </div>
-            </div>
-        }
-
-        @if (financialEntity.FormattedOpenDate != null)
-        {
-            <div class="row border-bottom p-2">
-                <div class="col-lg-2">
-                    <h5>Open Date</h5>
-                </div>
-                <div class="col-lg-2">
-                    <p>@financialEntity.FormattedOpenDate</p>
-                </div>
-            </div>
-        }
-        
-        @if (financialEntity.FormattedMinimumPayment != null)
-        {
-            <div class="row border-bottom p-2">
-                <div class="col-lg-2">
-                    <h5>Minimum Payment</h5>
-                </div>
-                <div class="col-lg-2">
-                    <p>@financialEntity.FormattedMinimumPayment</p>
-                </div>
-            </div>
-        }
-
-        @if (financialEntity.FormattedInitialAmount != null)
-        {
-            <div class="row border-bottom p-2">
-                <div class="col-lg-2">
-                    <h5>Initial Deposit</h5>
-                </div>
-                <div class="col-lg-2">
-                    <p>@financialEntity.FormattedInitialAmount</p>
-                </div>
-            </div>
-        }
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="col-3">
+            <button class="btn btn-secondary" @onclick="() => FinancialEntity_Edit(financialEntity.Id)">Edit</button>
+        </div> 
     </div>
 
-}
-else
-{
-    <p>Loading...</p>
-}
+    @if(financialEntity != null){
+        <div class="p-2">
+            <h2>@financialEntity.EntityName</h2>
+            <div class="row border-bottom p-2">
+                <div class="col-lg-2">
+                    <h5>Type:</h5>
+                </div>
+                <div class="col-lg-2">
+                    <p>@financialEntity.EntityType</p>
+                </div>
+            </div>
+
+            <div class="row border-bottom p-2">
+                <div class="col-lg-2">
+                    <h5>Balance:</h5>
+                </div>
+                <div class="col-lg-2">
+                    <p>@financialEntity.FormattedBalance</p>
+                </div>
+            </div>
+
+            @if (financialEntity.FormattedAPY != null)
+            {
+                <div class="row border-bottom p-2">
+                    <div class="col-lg-2">
+                        <h5>APY:</h5>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>@financialEntity.FormattedAPY</p>
+                    </div>
+                </div>
+            }
+
+           @if (financialEntity.FormattedInterestRate != null)
+            {
+                <div class="row border-bottom p-2">
+                    <div class="col-lg-2">
+                        <h5>Interest Rate</h5>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>@financialEntity.FormattedInterestRate</p>
+                    </div>
+                </div>
+            }
+
+            @if (financialEntity.FormattedOpenDate != null)
+            {
+                <div class="row border-bottom p-2">
+                    <div class="col-lg-2">
+                        <h5>Open Date</h5>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>@financialEntity.FormattedOpenDate</p>
+                    </div>
+                </div>
+            }
+        
+            @if (financialEntity.FormattedMinimumPayment != null)
+            {
+                <div class="row border-bottom p-2">
+                    <div class="col-lg-2">
+                        <h5>Minimum Payment</h5>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>@financialEntity.FormattedMinimumPayment</p>
+                    </div>
+                </div>
+            }
+
+            @if (financialEntity.FormattedInitialAmount != null)
+            {
+                <div class="row border-bottom p-2">
+                    <div class="col-lg-2">
+                        <h5>Initial Deposit</h5>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>@financialEntity.FormattedInitialAmount</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
+</div>

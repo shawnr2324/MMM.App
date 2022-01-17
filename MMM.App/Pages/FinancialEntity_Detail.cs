@@ -27,5 +27,10 @@ namespace MMM.App.Pages
             financialEntity = await _db_FinancialEntityDb.GetFinancialEntity(Int32.Parse(Id));
         }
 
+        private void FinancialEntity_Edit(int id)
+        {
+            _uriHelper.NavigateTo($"financialentity_edit/{id}");
+        }
+
     }
 }

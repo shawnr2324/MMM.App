@@ -10,6 +10,7 @@ namespace MMM.Models
     public  class FinancialEntity_Model
     {
         public int Id { get; set; }
+        public string UserID { get; set; }
         public int EntityTypeID { get; set; }
         public decimal Balance { get; set; }
         public decimal? InterestRate { get; set; }
