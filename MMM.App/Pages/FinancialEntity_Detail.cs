@@ -2,6 +2,7 @@
 using MMM.Models;
 using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
+using MMM.App.Shared;
 
 namespace MMM.App.Pages
 {
@@ -20,6 +21,7 @@ namespace MMM.App.Pages
         public string Id { get; set; }
         [Parameter]
         public FinancialEntity_Model financialEntity { get; set; }
+        protected Confirm DeleteConfirmation { get; set; }
 
 
         protected override async Task OnInitializedAsync()
@@ -30,6 +32,20 @@ namespace MMM.App.Pages
         private void FinancialEntity_Edit(int id)
         {
             _uriHelper.NavigateTo($"financialentity_edit/{id}");
+        }
+
+        private void FinancialEntity_Delete()
+        {
+            DeleteConfirmation.Show();
+        }
+
+        protected async Task ConfirmDelete_Click(bool deleteConfirmed)
+        {
+            if (deleteConfirmed)
+            {
+                await _db_FinancialEntityDb.DeleteFinancialEntity(financialEntity);
+                _uriHelper.NavigateTo("financialentity_list");
+            }
         }
 
     }

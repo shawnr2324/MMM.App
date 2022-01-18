@@ -3,13 +3,13 @@
 @attribute [Authorize]
 
 <div class="container">
-    <div class="row justify-content-end">
-        <div class="col-3">
-            <button class="btn btn-secondary" @onclick="() => FinancialEntity_Edit(financialEntity.Id)">Edit</button>
-        </div> 
-    </div>
-
     @if(financialEntity != null){
+        <div class="row justify-content-end">
+            <div class="col-3">
+                <button class="btn btn-secondary" @onclick="() => FinancialEntity_Edit(financialEntity.Id)">Edit</button>
+            </div> 
+        </div>
+
         <div class="p-2">
             <h2>@financialEntity.EntityName</h2>
             <div class="row border-bottom p-2">
@@ -91,9 +91,17 @@
             }
         </div>
 
+        <div class="row justify-content-end">
+            <div class="col-3">
+                <button class="btn btn-danger" @onclick="() => FinancialEntity_Delete()">Delete</button>
+            </div> 
+        </div>
+
     }
     else
     {
         <p>Loading...</p>
     }
 </div>
+
+<Confirm ShowConfirmationChanged="ConfirmDelete_Click" ConfirmTitle="Confirm Delete" ConfirmText="Are you sure you want to delete?" ActionButton="Delete" @ref="DeleteConfirmation"></Confirm>

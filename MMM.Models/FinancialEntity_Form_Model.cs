@@ -42,34 +42,34 @@ namespace MMM.Models
         [Required]
         public decimal Balance { get; set; }
 
-        [RequiredConditional("Debt", "InterestRate"), DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = true)]
+        [Required_EntityTypeConditional("Debt", "InterestRate"), DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = true)]
         public decimal? InterestRate { get; set; }
 
-        [RequiredConditional("SavingsAndDebt", "OpenDate"), DataType(DataType.Date)]
+        [Required_EntityTypeConditional("SavingsAndDebt", "OpenDate"), DataType(DataType.Date)]
         public DateTime? OpenDate { get; set; }
 
-        [RequiredConditional("Debt", "MinimumPayment"), DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
+        [Required_EntityTypeConditional("Debt", "MinimumPayment"), DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
         public decimal? MinimumPayment { get; set; }
 
-        [RequiredConditional("Savings", "APY"), DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = true)]
+        [Required_EntityTypeConditional("Savings", "APY"), DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = true)]
         public decimal? APY { get; set; }
 
         [Required]
         public string EntityName { get; set; }
 
-        [RequiredConditional("SavingsAndDebt", "InitialAmount"), DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = true)]
+        [Required_EntityTypeConditional("SavingsAndDebt", "InitialAmount"), DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = true)]
         public decimal? InitialAmount { get; set; }
 
     }
 
     //Custom Validation
-    public class RequiredConditional : ValidationAttribute
+    public class Required_EntityTypeConditional : ValidationAttribute
     {
         private string _entityTypeName { get; set; }
         private bool _valid { get; set; }
         private string _fieldName { get; set; }
 
-        public RequiredConditional(string entityTypeName, string fieldName)
+        public Required_EntityTypeConditional(string entityTypeName, string fieldName)
         {
             _entityTypeName = entityTypeName;
             _fieldName = fieldName;

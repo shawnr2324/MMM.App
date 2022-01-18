@@ -80,5 +80,13 @@ namespace DataAccessLibrary
 
             return _db.SaveData(sql, financialEntity);
         }
+
+        public Task DeleteFinancialEntity(FinancialEntity_Model financialEntity)
+        {
+            string sql = @"DELETE FROM dbo.Financial_Entity
+                            WHERE Id = @Id";
+
+            return _db.SaveData(sql, financialEntity);
+        }
     }
 }
