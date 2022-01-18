@@ -49,7 +49,7 @@ namespace MMM.App.Pages
         {
             
             JsRuntime.InvokeAsync<string>("console.log", "Valid Submit Handled");
-            JsRuntime.InvokeAsync<string>("console.log", financialEntity.SavingsAndDebt);
+            //JsRuntime.InvokeAsync<string>("console.log", financialEntity.SavingsAndDebt);
         }
 
         private void HandleInvalidSubmit()

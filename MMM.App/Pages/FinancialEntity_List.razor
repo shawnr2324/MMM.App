@@ -22,10 +22,10 @@
                   <h4 class="card-title"><b>@financialEntity.EntityName</b></h4>
                   <p class="card-text">@financialEntity.EntityType</p>
                   <div class="row justify-content-center">
-                      <div class="col-3">
+                      <div class="col-sm-12 col-md-12 col-lg-3 pt-1">
                           <button class="btn btn-info" @onclick="() => FinancialEntity_View(financialEntity.Id)">View</button>
                       </div>
-                      <div class="col-3">
+                      <div class="col-sm-12 col-md-12 col-lg-3 pt-1">
                           <button class="btn btn-secondary" @onclick="() => FinancialEntity_Edit(financialEntity.Id)">Edit</button>
                       </div>                 
                   </div>
