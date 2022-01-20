@@ -2,17 +2,19 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using MMM.Models;
+using MMM.App.Data;
 
-namespace DataAccessLibrary
+
+namespace MMM.App.Shared.Data
 {
     public class AuthUserData : IAuthUserData
     {
         public AuthUser_Model authUser { get; set; }
 
         private AuthenticationStateProvider _authenticationStateProvider { get; set; }
-        private UserManager<IdentityUser> _userManager { get; set; }
+        private UserManager<ApplicationUser> _userManager { get; set; }
 
-        public AuthUserData(AuthenticationStateProvider authenticationStateProvider, UserManager<IdentityUser> userManager)
+        public AuthUserData(AuthenticationStateProvider authenticationStateProvider, UserManager<ApplicationUser> userManager)
         {
             _authenticationStateProvider = authenticationStateProvider;
             _userManager = userManager;

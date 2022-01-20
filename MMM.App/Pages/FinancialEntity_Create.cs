@@ -2,6 +2,7 @@
 using DataAccessLibrary;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using MMM.App.Shared.Data;
 
 namespace MMM.App.Pages
 {

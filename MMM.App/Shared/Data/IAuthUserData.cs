@@ -1,6 +1,6 @@
 ﻿using MMM.Models;
 
-namespace DataAccessLibrary
+namespace MMM.App.Shared.Data
 {
     public interface IAuthUserData
     {
